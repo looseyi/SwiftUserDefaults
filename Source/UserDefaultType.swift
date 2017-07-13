@@ -27,11 +27,30 @@ public class UserDefaultsItem<UserDefaultType> {
 
     func configureType() {
         let type = T.self
-        if type == Any.self {
-
-        } else if type == Dictionary<String, Any>.self {
+        if type == Any.self || type == AnyObject.self {
+            self.type = .object
+        } else if type == Dictionary<String, AnyObject>.self ||
+            type == Dictionary<String, Array<Any>>.self ||
+            type == Dictionary<String, Data>.self ||
+            type == Dictionary<String, Date>.self ||
+            type == Dictionary<String, String>.self ||
+            type == Dictionary<String, Int>.self ||
+            type == Dictionary<String, Float>.self ||
+            type == Dictionary<String, Double>.self ||
+            type == Dictionary<String, URL>.self ||
+            type == Dictionary<String, Bool>.self ||
+            type == Dictionary<String, Any>.self {
             self.type = .dictionary
-        } else if type == Array<Any>.self {
+        } else if type == [Any].self ||
+            type == [Data].self ||
+            type == [Date].self ||
+            type == [String].self ||
+            type == [Int].self ||
+            type == [Float].self ||
+            type == [Double].self ||
+            type == [URL].self ||
+            type == [Bool].self ||
+            type == [[Any]].self {
             self.type = .array
         } else if type == Data.self {
             self.type = .data
@@ -53,6 +72,8 @@ public class UserDefaultsItem<UserDefaultType> {
             self.type = .float
         } else if type == [String].self {
             self.type = .stringArr
+        } else if type == Bool.self {
+            self.type = .bool
         }
     }
 
