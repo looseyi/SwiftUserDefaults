@@ -168,6 +168,6 @@ public class UserDefaultsItem<UserDefaultType> {
 
 extension UserDefaultsItem : CustomDebugStringConvertible {
     public var debugDescription: String {
-        return "UserDefaultsItem store \(key) of type \(type ?? nil)"
+        return "UserDefaultsItem store \(key) of type \(String(describing: type ?? nil)))"
     }
 }
