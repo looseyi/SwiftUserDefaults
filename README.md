@@ -1,3 +1,4 @@
+Now, support Swift 4.2
 
 **SwiftUserDefault**, which is just wrap NSUserDefaults, make you easy to use.
 

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SwiftUserDefault"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "SwiftUserDefaults wrap NSUserDefaults, easy to use"
   s.description  = <<-DESC
   SwiftUserDefaults is a wrapper, with it you can't use it as easy as you can, just like the Notification declear.
