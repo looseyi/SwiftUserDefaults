@@ -11,217 +11,218 @@ import XCTest
 
 
 struct TestUserDefault {
-    static let objectTest = UserDefaultsItem<AnyObject>("objectTest")
-    static let stringTest = UserDefaultsItem<String>("stringTest")
-    static let boolTest = UserDefaultsItem<Bool>("boolTest")
-    static let intTest = UserDefaultsItem<Int>("intTest")
-    static let floatTest = UserDefaultsItem<Float>("floatTest")
-    static let doubleTest = UserDefaultsItem<Double>("doubleTest")
-    static let dataTest = UserDefaultsItem<Data>("dataTest")
-    static let dateTest = UserDefaultsItem<Date>("dateTest")
-    static let boolArrayTest = UserDefaultsItem<[Bool]>("boolArrayTest")
-    static let intArrayTest = UserDefaultsItem<[Int]>("intArrayTest")
-    static let stringArrayTest = UserDefaultsItem<[String]>("stringArrayTest")
-    static let dataArrayTest = UserDefaultsItem<[Data]>("dataArrayTest")
-    static let dictionary1Test = UserDefaultsItem<[String : Int]>("dictionary<String : Int>Testionary")
-    static let dictionary2Test = UserDefaultsItem<[String : String]>("dictionary<String : String>Testionary")
-    static let dictionary3Test = UserDefaultsItem<[String : Date]>("dictionary<String : Date>Testionary")
-    static let dictionary4Test = UserDefaultsItem<[String : Bool]>("dictionary<String : Bool>Testionary")
-//    static let dictionary5Test = UserDefaultsItem<[String : [Int]]>("dictionary<String : [Int]>Testionary")
+  @UserDefaultsItem("objectTest") static var objectTest: AnyObject
+  @UserDefaultsItem("stringTest") static var stringTest: String
+  @UserDefaultsItem("boolTest") static var boolTest: Bool
+  @UserDefaultsItem("intTest") static var intTest: Int
+  @UserDefaultsItem("floatTest") static var floatTest: Float
+  @UserDefaultsItem("doubleTest") static var doubleTest: Double
+  @UserDefaultsItem("dataTest") static var dataTest: Data
+  @UserDefaultsItem("dateTest") static var dateTest: Date
+  @UserDefaultsItem("[Bool]") static var boolArrayTest: [Bool]
+  @UserDefaultsItem("[Int]") static var intArrayTest: [Int]
+  @UserDefaultsItem("[String]") static var stringArrayTest: [String]
+  @UserDefaultsItem("[Data]") static var dataArrayTest: [Data]
+  @UserDefaultsItem("<String : Int>") static var dictIntTest: [String : Int]
+  @UserDefaultsItem("<String : String>") static var dictStringTest: [String : String]
+  @UserDefaultsItem("<String : Date>") static var dictDateTest: [String : Date]
+  @UserDefaultsItem("<String : Bool>") static var dictBoolTest: [String : Bool]
+//  @UserDefaultsItem("dictionary<String : [Int]>") static var dicArrayTest: [String : [Int]]
 }
 
 struct TestResult {
-    static let objectValue: NSDictionary = NSDictionary(dictionary: ["sss" : "ss"])
-    static let stringValue: String = "SwiftStringTest"
-    static let boolValue: Bool = true
-    static let intValue: Int = 123456
-    static let floatValue: Float = 123456.1234
-    static let doubleValue: Double = 123456.12345678
-    static let dataValue: Data = "SwiftDataTest".data(using: .utf8, allowLossyConversion: true)!
-    static let dateValue: Date = Date(timeIntervalSinceNow: 10000)
-    static let boolArrayValue: [Bool] = [true, true, false]
-    static let intArrayValue: [Int] = [1, 2, 3, 4, 5]
-    static let stringArrayValue: [String] = ["1", "2", "3"]
-    static let dataArrayValue: [Data] = [TestResult.dataValue, TestResult.dataValue, TestResult.dataValue]
-    static let dictionary1Value = ["one" : 1, "two" : 2, "three" : 3]
-    static let dictionary2Value = ["one" : "1", "two" : "2"]
-    static let dictionary3Value = ["time" : TestResult.dateValue, "time2" : TestResult.dateValue]
-    static let dictionary4Value = ["time" : true, "time2" : false]
-//    static let dictionary5Value = ["time" : [2], "time2" : [1]]
+  static var objectValue: NSDictionary = NSDictionary(dictionary: ["sss" : "ss"])
+  static var stringValue: String = "SwiftStringTest"
+  static var boolValue: Bool = true
+  static var intValue: Int = 123456
+  static var floatValue: Float = 123456.1234
+  static var doubleValue: Double = 123456.12345678
+  static var dataValue: Data = "SwiftDataTest".data(using: .utf8, allowLossyConversion: true)!
+  static var dateValue: Date = Date(timeIntervalSinceNow: 10000)
+  static var boolArrayValue: [Bool] = [true, true, false]
+  static var intArrayValue: [Int] = [1, 2, 3, 4, 5]
+  static var stringArrayValue: [String] = ["1", "2", "3"]
+  static var dataArrayValue: [Data] = [TestResult.dataValue, TestResult.dataValue, TestResult.dataValue]
+  static var dictIntValue = ["one" : 1, "two" : 2, "three" : 3]
+  static var dictStringValue = ["one" : "1", "two" : "2"]
+  static var dictDateValue = ["time" : TestResult.dateValue, "time2" : TestResult.dateValue]
+  static var dictBoolValue = ["time" : true, "time2" : false]
+  static var dictArrayValue = ["time" : [2], "time2" : [1]]
 }
 
 
 class SwiftUserDefaultTests: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
+  override func setUp() {
+    super.setUp()
 
-        TestUserDefault.objectTest.value = TestResult.objectValue
-        XCTAssert(true, "test set \(TestUserDefault.objectTest) ok")
+    TestUserDefault.objectTest = TestResult.objectValue
+    XCTAssert(true, "test set \(TestUserDefault.objectTest.debugDescription.debugDescription) ok")
 
-        TestUserDefault.stringTest.value = TestResult.stringValue
-        XCTAssert(true, "test set \(TestUserDefault.stringTest) ok")
+    TestUserDefault.stringTest = TestResult.stringValue
+    XCTAssert(true, "test set \(TestUserDefault.stringTest.debugDescription) ok")
 
-        TestUserDefault.boolTest.value = TestResult.boolValue
-        XCTAssert(true, "test set \(TestUserDefault.boolTest) ok")
+    TestUserDefault.boolTest = TestResult.boolValue
+    XCTAssert(true, "test set \(TestUserDefault.boolTest.debugDescription) ok")
 
-        TestUserDefault.intTest.value = TestResult.intValue
-        XCTAssert(true, "test set \(TestUserDefault.intTest) ok")
+    TestUserDefault.intTest = TestResult.intValue
+    XCTAssert(true, "test set \(TestUserDefault.intTest.debugDescription) ok")
 
-        TestUserDefault.floatTest.value = TestResult.floatValue
-        XCTAssert(true, "test set \(TestUserDefault.floatTest) ok")
+    TestUserDefault.floatTest = TestResult.floatValue
+    XCTAssert(true, "test set \(TestUserDefault.floatTest.debugDescription) ok")
 
-        TestUserDefault.doubleTest.value = TestResult.doubleValue
-        XCTAssert(true, "test set \(TestUserDefault.doubleTest) ok")
+    TestUserDefault.doubleTest = TestResult.doubleValue
+    XCTAssert(true, "test set \(TestUserDefault.doubleTest.debugDescription) ok")
 
-        TestUserDefault.dataTest.value = TestResult.dataValue
-        XCTAssert(true, "test set \(TestUserDefault.dataTest) ok")
+    TestUserDefault.dataTest = TestResult.dataValue
+    XCTAssert(true, "test set \(TestUserDefault.dataTest.debugDescription) ok")
 
-        TestUserDefault.dateTest.value = TestResult.dateValue
-        XCTAssert(true, "test set \(TestUserDefault.dateTest) ok")
+    TestUserDefault.dateTest = TestResult.dateValue
+    XCTAssert(true, "test set \(TestUserDefault.dateTest.debugDescription) ok")
 
-        TestUserDefault.boolArrayTest.value = TestResult.boolArrayValue
-        XCTAssert(true, "test set \(TestUserDefault.boolArrayTest) ok")
+    TestUserDefault.boolArrayTest = TestResult.boolArrayValue
+    XCTAssert(true, "test set \(TestUserDefault.boolArrayTest.debugDescription) ok")
 
-        TestUserDefault.intArrayTest.value = TestResult.intArrayValue
-        XCTAssert(true, "test set \(TestUserDefault.intArrayTest) ok")
+    TestUserDefault.intArrayTest = TestResult.intArrayValue
+    XCTAssert(true, "test set \(TestUserDefault.intArrayTest.debugDescription) ok")
 
-        TestUserDefault.stringArrayTest.value = TestResult.stringArrayValue
-        XCTAssert(true, "test set \(TestUserDefault.stringArrayTest) ok")
+    TestUserDefault.stringArrayTest = TestResult.stringArrayValue
+    XCTAssert(true, "test set \(TestUserDefault.stringArrayTest.debugDescription) ok")
 
-        TestUserDefault.dataArrayTest.value = TestResult.dataArrayValue
-        XCTAssert(true, "test set \(TestUserDefault.dataArrayTest) ok")
+    TestUserDefault.dataArrayTest = TestResult.dataArrayValue
+    XCTAssert(true, "test set \(TestUserDefault.dataArrayTest.debugDescription) ok")
 
-        TestUserDefault.dictionary1Test.value = TestResult.dictionary1Value
-        XCTAssert(true, "test set \(TestUserDefault.dictionary1Test) ok")
+    TestUserDefault.dictIntTest = TestResult.dictIntValue
+    XCTAssert(true, "test set \(TestUserDefault.dictIntTest.debugDescription) ok")
 
-        TestUserDefault.dictionary2Test.value = TestResult.dictionary2Value
-        XCTAssert(true, "test set \(TestUserDefault.dictionary2Test) ok")
+    TestUserDefault.dictStringTest = TestResult.dictStringValue
+    XCTAssert(true, "test set \(TestUserDefault.dictStringTest.debugDescription) ok")
 
-        TestUserDefault.dictionary3Test.value = TestResult.dictionary3Value
-        XCTAssert(true, "test set \(TestUserDefault.dictionary3Test) ok")
+    TestUserDefault.dictDateTest = TestResult.dictDateValue
+    XCTAssert(true, "test set \(TestUserDefault.dictDateTest.debugDescription) ok")
 
-        TestUserDefault.dictionary4Test.value = TestResult.dictionary4Value
-        XCTAssert(true, "test set \(TestUserDefault.dictionary4Test) ok")
+    TestUserDefault.dictBoolTest = TestResult.dictBoolValue
+    XCTAssert(true, "test set \(TestUserDefault.dictBoolTest.debugDescription) ok")
 
-//        TestUserDefault.dictionary5Test.value = TestResult.dictionary5Value
-//        XCTAssert(true, "test set \(TestUserDefault.dictionary5Test) ok")
+//    TestUserDefault.dicArrayTest = TestResult.dictArrayValue
+//    XCTAssert(true, "test set \(TestUserDefault.dicArrayTest.debugDescription) ok")
+  }
+
+  override func tearDown() {
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    super.tearDown()
+  }
+
+  func testGetObjectValue() {
+    if let value = TestUserDefault.objectTest {
+      return XCTAssert(value as! NSObject == TestResult.objectValue, "test get \(value) ok")
     }
+    XCTAssert(false, "test get TestUserDefault objectTest failure")
+  }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+  func testGetStringValue() {
+    if let value = TestUserDefault.stringTest {
+      return XCTAssert(value == TestResult.stringValue, "test get \(value) ok")
     }
+    XCTAssert(false, "test get TestUserDefault stringTest failure")
+  }
 
-    func testGetObjectValue() {
-        if let value = TestUserDefault.objectTest.value {
-            return XCTAssert(value as! NSObject == TestResult.objectValue, "test get \(TestUserDefault.objectTest) ok")
-        }
-        XCTAssert(false, "test get \(TestUserDefault.objectTest) failure")
+  func testGetBoolValue() {
+    if let value = TestUserDefault.boolTest {
+      return XCTAssert(value == TestResult.boolValue, "test get \(value) ok")
     }
+    XCTAssert(false, "test get TestUserDefault boolTest failure")
+  }
 
-    func testGetStringValue() {
-        if let value = TestUserDefault.stringTest.value {
-            return XCTAssert(value == TestResult.stringValue, "test get \(TestUserDefault.stringTest) ok")
-        }
-        XCTAssert(false, "test get \(TestUserDefault.stringTest) failure")
+  func testGetIntValue() {
+    if let value = TestUserDefault.intTest {
+      return XCTAssert(value == TestResult.intValue, "test get \(value) ok")
     }
+    XCTAssert(false, "test get TestUserDefault intTest failure")
+  }
 
-    func testGetBoolValue() {
-        if let value = TestUserDefault.boolTest.value {
-            return XCTAssert(value == TestResult.boolValue, "test get \(TestUserDefault.boolTest) ok")
-        }
-        XCTAssert(false, "test get \(TestUserDefault.boolTest) failure")
+  func testGetFloatArr() {
+    if let value = TestUserDefault.floatTest {
+      return XCTAssert(value == TestResult.floatValue, "test get \(value)ok")
     }
+    XCTAssert(false, "test get TestUserDefault floatTest failure")
+  }
 
-    func testGetIntValue() {
-        if let value = TestUserDefault.intTest.value {
-            return XCTAssert(value == TestResult.intValue, "test get \(TestUserDefault.intTest) ok")
-        }
-        XCTAssert(false, "test get \(TestUserDefault.intTest) failure")
+  func testGetDoubleValue() {
+    if let value = TestUserDefault.doubleTest {
+      return XCTAssert(value == TestResult.doubleValue, "test get \(value)ok")
     }
+    XCTAssert(false, "test get TestUserDefault doubleTest failure")
+  }
 
-    func testGetFloatArr() {
-        if let value = TestUserDefault.floatTest.value {
-            return XCTAssert(value == TestResult.floatValue, "test get \(TestUserDefault.floatTest) ok")
-        }
-        XCTAssert(false, "test get \(TestUserDefault.floatTest) failure")
+  func testGetDataValue() {
+    if let value = TestUserDefault.dataTest {
+      return XCTAssert(value == TestResult.dataValue, "test get \(value) ok")
     }
+    XCTAssert(false, "test get TestUserDefault dataTest failure")
+  }
 
-    func testGetDoubleValue() {
-        if let value = TestUserDefault.doubleTest.value {
-            return XCTAssert(value == TestResult.doubleValue, "test get \(TestUserDefault.doubleTest) ok")
-        }
-        XCTAssert(false, "test get \(TestUserDefault.doubleTest) failure")
+  func testGetDateValue() {
+    if let value = TestUserDefault.dateTest {
+      return XCTAssert(value == TestResult.dateValue, "test get \(value) ok")
     }
+    XCTAssert(false, "test get TestUserDefault dateTest failure")
+  }
 
-    func testGetDataValue() {
-        if let value = TestUserDefault.dataTest.value {
-            return XCTAssert(value == TestResult.dataValue, "test get \(TestUserDefault.dataTest) ok")
-        }
-        XCTAssert(false, "test get \(TestUserDefault.dataTest) failure")
+  func testGetIntArrayValue() {
+    if let value = TestUserDefault.intArrayTest {
+      return XCTAssert(value == TestResult.intArrayValue, "test get \(value) ok")
     }
+    XCTAssert(false, "test get TestUserDefault intArrayTest failure")
+  }
 
-    func testGetDateValue() {
-        if let value = TestUserDefault.dateTest.value {
-            return XCTAssert(value == TestResult.dateValue, "test get \(TestUserDefault.dateTest) ok")
-        }
-        XCTAssert(false, "test get \(TestUserDefault.dateTest) failure")
+  func testGetStringArrValue() {
+    if let value = TestUserDefault.stringArrayTest {
+      return XCTAssert(value == TestResult.stringArrayValue, "test get \(value) ok")
     }
+    XCTAssert(false, "test get TestUserDefault stringArrayTest failure")
+  }
 
-    func testGetIntArrayValue() {
-        if let value = TestUserDefault.intArrayTest.value {
-            return XCTAssert(value == TestResult.intArrayValue, "test get \(TestUserDefault.intArrayTest) ok")
-        }
-        XCTAssert(false, "test get \(TestUserDefault.intArrayTest) failure")
+  func testGetDataArrValue() {
+    if let value = TestUserDefault.dataArrayTest {
+      return XCTAssert(value == TestResult.dataArrayValue, "test get \(value) ok")
     }
+    XCTAssert(false, "test get TestUserDefault dataArrayTest failure")
+  }
 
-    func testGetStringArrValue() {
-        if let value = TestUserDefault.stringArrayTest.value {
-            return XCTAssert(value == TestResult.stringArrayValue, "test get \(TestUserDefault.stringArrayTest) ok")
-        }
-        XCTAssert(false, "test get \(TestUserDefault.stringArrayTest) failure")
+  func testGetdictIntValue() {
+    if let value = TestUserDefault.dictIntTest {
+      return XCTAssert(value == TestResult.dictIntValue, "test get \(value) ok")
     }
+    XCTAssert(false, "test get TestUserDefault dictIntTest failure")
+  }
 
-    func testGetDataArrValue() {
-        if let value = TestUserDefault.dataArrayTest.value {
-            return XCTAssert(value == TestResult.dataArrayValue, "test get \(TestUserDefault.dataArrayTest) ok")
-        }
-        XCTAssert(false, "test get \(TestUserDefault.dataArrayTest) failure")
+  func testGetdictStringValue() {
+    if let value = TestUserDefault.dictStringTest {
+      return XCTAssert(value == TestResult.dictStringValue, "test get \(value) ok")
     }
+    XCTAssert(false, "test get TestUserDefault dictStringTest failure")
+  }
 
-    func testGetDictionary1Value() {
-        if let value = TestUserDefault.dictionary1Test.value {
-            return XCTAssert(value == TestResult.dictionary1Value, "test get \(TestUserDefault.dictionary1Test) ok")
-        }
-        XCTAssert(false, "test get \(TestUserDefault.dictionary1Test) failure")
+  func testGetdictDateValue() {
+    if let value = TestUserDefault.dictDateTest {
+      return XCTAssert(value == TestResult.dictDateValue, "test get \(value) ok")
     }
+    XCTAssert(false, "test get TestUserDefault dictDateTest failure")
+  }
 
-    func testGetDictionary2Value() {
-        if let value = TestUserDefault.dictionary2Test.value {
-            return XCTAssert(value == TestResult.dictionary2Value, "test get \(TestUserDefault.dictionary2Test) ok")
-        }
-        XCTAssert(false, "test get \(TestUserDefault.dictionary2Test) failure")
+  func testGetdictBoolValue() {
+    if let value = TestUserDefault.dictBoolTest {
+      return XCTAssert(value == TestResult.dictBoolValue, "test get \(value) ok")
     }
+    XCTAssert(false, "test get TestUserDefault dictBoolTest failure")
+  }
 
-    func testGetDictionary3Value() {
-        if let value = TestUserDefault.dictionary3Test.value {
-            return XCTAssert(value == TestResult.dictionary3Value, "test get \(TestUserDefault.dictionary3Test) ok")
-        }
-        XCTAssert(false, "test get \(TestUserDefault.dictionary3Test) failure")
-    }
-
-    func testGetDictionary4Value() {
-        if let value = TestUserDefault.dictionary4Test.value {
-            return XCTAssert(value == TestResult.dictionary4Value, "test get \(TestUserDefault.dictionary4Test) ok")
-        }
-        XCTAssert(false, "test get \(TestUserDefault.dictionary4Test) failure")
-    }
-
-//    func testGetDictionary5Value() {
-//        if let value = TestUserDefault.dictionary5Test.value {
-//            return XCTAssert(value == TestResult.dictionary5Value, "test get \(TestUserDefault.dictionary5Test) ok")
-//        }
-//        XCTAssert(false, "test get \(TestUserDefault.dictionary5Test) failure")
+//  func testGetdictArrayValue() {
+//    if let value = TestUserDefault.dicArrayTest {
+//      return XCTAssert(value == TestResult.dictArrayValue, "test get \(value) ok")
 //    }
+//    XCTAssert(false, "test get TestUserDefault dicArrayTest failure")
+//  }
 }
+
