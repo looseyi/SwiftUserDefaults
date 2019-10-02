@@ -1,6 +1,6 @@
 //
 //  UserDefaultType.swift
-//  SwiftUserDefault
+//  SwiftUserDefaults
 //
 //  Created by Edmond on 19/03/2560 BE.
 //  Copyright © 2560 BE Edmond. All rights reserved.
@@ -174,5 +174,3 @@ extension UserDefaultsItem : CustomStringConvertible, CustomDebugStringConvertib
     return "UserDefaultsItem: \(key) - \(String(describing: type ?? nil))"
   }
 }
-
-

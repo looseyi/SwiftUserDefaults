@@ -1,0 +1,16 @@
+PODS:
+  - SwiftUserDefaults (0.1.0)
+
+DEPENDENCIES:
+  - SwiftUserDefaults (from `../`)
+
+EXTERNAL SOURCES:
+  SwiftUserDefaults:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SwiftUserDefaults: 6b65e4b5b60c82add4c23b942a262a5b8d3c89d9
+
+PODFILE CHECKSUM: fea35d751ddf611226747fac294f43cc8e0ac267
+
+COCOAPODS: 1.7.5

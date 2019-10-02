@@ -1,14 +1,14 @@
 //
-//  SwiftUserDefaultTests.swift
-//  SwiftUserDefaultTests
+//  ExampleTests.swift
+//  ExampleTests
 //
-//  Created by Edmond on 19/03/2560 BE.
-//  Copyright © 2560 BE Edmond. All rights reserved.
+//  Created by Edmond on 2019/10/2.
+//  Copyright © 2019 Snowball. All rights reserved.
 //
 
 import XCTest
-@testable import SwiftUserDefault
-
+import SwiftUserDefaults
+@testable import Example
 
 struct TestUserDefault {
   @UserDefaultsItem("objectTest") static var objectTest: AnyObject
@@ -27,7 +27,7 @@ struct TestUserDefault {
   @UserDefaultsItem("<String : String>") static var dictStringTest: [String : String]
   @UserDefaultsItem("<String : Date>") static var dictDateTest: [String : Date]
   @UserDefaultsItem("<String : Bool>") static var dictBoolTest: [String : Bool]
-//  @UserDefaultsItem("dictionary<String : [Int]>") static var dicArrayTest: [String : [Int]]
+  //  @UserDefaultsItem("dictionary<String : [Int]>") static var dicArrayTest: [String : [Int]]
 }
 
 struct TestResult {
@@ -51,7 +51,7 @@ struct TestResult {
 }
 
 
-class SwiftUserDefaultTests: XCTestCase {
+class ExampleTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
@@ -104,8 +104,8 @@ class SwiftUserDefaultTests: XCTestCase {
     TestUserDefault.dictBoolTest = TestResult.dictBoolValue
     XCTAssert(true, "test set \(TestUserDefault.dictBoolTest.debugDescription) ok")
 
-//    TestUserDefault.dicArrayTest = TestResult.dictArrayValue
-//    XCTAssert(true, "test set \(TestUserDefault.dicArrayTest.debugDescription) ok")
+    //    TestUserDefault.dicArrayTest = TestResult.dictArrayValue
+    //    XCTAssert(true, "test set \(TestUserDefault.dicArrayTest.debugDescription) ok")
   }
 
   override func tearDown() {
@@ -218,11 +218,11 @@ class SwiftUserDefaultTests: XCTestCase {
     XCTAssert(false, "test get TestUserDefault dictBoolTest failure")
   }
 
-//  func testGetdictArrayValue() {
-//    if let value = TestUserDefault.dicArrayTest {
-//      return XCTAssert(value == TestResult.dictArrayValue, "test get \(value) ok")
-//    }
-//    XCTAssert(false, "test get TestUserDefault dicArrayTest failure")
-//  }
+  //  func testGetdictArrayValue() {
+  //    if let value = TestUserDefault.dicArrayTest {
+  //      return XCTAssert(value == TestResult.dictArrayValue, "test get \(value) ok")
+  //    }
+  //    XCTAssert(false, "test get TestUserDefault dicArrayTest failure")
+  //  }
 }
 
